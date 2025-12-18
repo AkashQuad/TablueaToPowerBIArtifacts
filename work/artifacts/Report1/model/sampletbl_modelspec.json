@@ -1,0 +1,298 @@
+{
+  "reportId": "sampletbl",
+  "generatedAt": "2025-12-17T05:13:09.586087+00:00",
+  "tables": [
+    {
+      "name": "federated_0c51p3o0uzgyyk1dzk4cw1pk338q",
+      "columns": [
+        {
+          "name": "Candidate ID",
+          "type": "Int64"
+        },
+        {
+          "name": "Candidate Name",
+          "type": "String"
+        },
+        {
+          "name": "Date of Application",
+          "type": "DateTime"
+        },
+        {
+          "name": "Stage of Hiring Process",
+          "type": "String"
+        },
+        {
+          "name": "Date of Interview",
+          "type": "DateTime"
+        },
+        {
+          "name": "Interview Mode",
+          "type": "String"
+        },
+        {
+          "name": "Interview Duration (min)",
+          "type": "Int64"
+        },
+        {
+          "name": "Round",
+          "type": "Int64"
+        },
+        {
+          "name": "Interviewer Name",
+          "type": "String"
+        },
+        {
+          "name": "Date of Joining",
+          "type": "DateTime"
+        },
+        {
+          "name": "Total Experience (Years)",
+          "type": "Int64"
+        },
+        {
+          "name": "Expected Years of Experience",
+          "type": "Int64"
+        },
+        {
+          "name": "CTC Offered",
+          "type": "Int64"
+        },
+        {
+          "name": "Expected CTC",
+          "type": "Int64"
+        },
+        {
+          "name": "Preferred Location",
+          "type": "String"
+        },
+        {
+          "name": "Work Location",
+          "type": "String"
+        },
+        {
+          "name": "Job Role / Position",
+          "type": "String"
+        },
+        {
+          "name": "Department",
+          "type": "String"
+        },
+        {
+          "name": "Hiring Source",
+          "type": "String"
+        },
+        {
+          "name": "Hiring Type",
+          "type": "String"
+        },
+        {
+          "name": "Client Name",
+          "type": "String"
+        },
+        {
+          "name": "Status",
+          "type": "String"
+        },
+        {
+          "name": "**Expected Closing Date**",
+          "type": "DateTime"
+        },
+        {
+          "name": "Email",
+          "type": "String"
+        },
+        {
+          "name": "Phone Number",
+          "type": "String"
+        },
+        {
+          "name": "Resume Link",
+          "type": "String"
+        },
+        {
+          "name": "**Recruiter ID**",
+          "type": "Int64"
+        },
+        {
+          "name": "Reason for Rejection",
+          "type": "String"
+        },
+        {
+          "name": "[**Recruiter ID**]",
+          "type": "Int64"
+        },
+        {
+          "name": "[Candidate ID]",
+          "type": "Int64"
+        },
+        {
+          "name": "Sheet1",
+          "type": "String"
+        },
+        {
+          "name": "Candidate ID",
+          "type": "Int64"
+        },
+        {
+          "name": "Candidate Name",
+          "type": "String"
+        },
+        {
+          "name": "Date of Application",
+          "type": "DateTime"
+        },
+        {
+          "name": "Stage of Hiring Process",
+          "type": "String"
+        },
+        {
+          "name": "Date of Interview",
+          "type": "DateTime"
+        },
+        {
+          "name": "Interview Mode",
+          "type": "String"
+        },
+        {
+          "name": "Interview Duration (min)",
+          "type": "Int64"
+        },
+        {
+          "name": "Round",
+          "type": "Int64"
+        },
+        {
+          "name": "Interviewer Name",
+          "type": "String"
+        },
+        {
+          "name": "Date of Joining",
+          "type": "DateTime"
+        },
+        {
+          "name": "Total Experience (Years)",
+          "type": "Int64"
+        },
+        {
+          "name": "Expected Years of Experience",
+          "type": "Int64"
+        },
+        {
+          "name": "CTC Offered",
+          "type": "Int64"
+        },
+        {
+          "name": "Expected CTC",
+          "type": "Int64"
+        },
+        {
+          "name": "Preferred Location",
+          "type": "String"
+        },
+        {
+          "name": "Work Location",
+          "type": "String"
+        },
+        {
+          "name": "Job Role / Position",
+          "type": "String"
+        },
+        {
+          "name": "Department",
+          "type": "String"
+        },
+        {
+          "name": "Hiring Source",
+          "type": "String"
+        },
+        {
+          "name": "Hiring Type",
+          "type": "String"
+        },
+        {
+          "name": "Client Name",
+          "type": "String"
+        },
+        {
+          "name": "Status",
+          "type": "String"
+        },
+        {
+          "name": "**Expected Closing Date**",
+          "type": "DateTime"
+        },
+        {
+          "name": "Email",
+          "type": "String"
+        },
+        {
+          "name": "Phone Number",
+          "type": "String"
+        },
+        {
+          "name": "Resume Link",
+          "type": "String"
+        },
+        {
+          "name": "**Recruiter ID**",
+          "type": "Int64"
+        },
+        {
+          "name": "Reason for Rejection",
+          "type": "String"
+        }
+      ]
+    },
+    {
+      "name": "_unnamed",
+      "columns": [
+        {
+          "name": "[Client Name]",
+          "type": "String"
+        },
+        {
+          "name": "[Job Role / Position]",
+          "type": "String"
+        },
+        {
+          "name": "[cnt:Client Name:qk]",
+          "type": "String"
+        },
+        {
+          "name": "[none:Job Role / Position:nk]",
+          "type": "String"
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "from_table": null,
+      "from_column": null,
+      "to_table": null,
+      "to_column": null,
+      "cardinality": "table"
+    },
+    {
+      "from_table": null,
+      "from_column": null,
+      "to_table": null,
+      "to_column": null,
+      "cardinality": "table"
+    },
+    {
+      "from_table": null,
+      "from_column": null,
+      "to_table": null,
+      "to_column": null,
+      "cardinality": "table"
+    },
+    {
+      "from_table": null,
+      "from_column": null,
+      "to_table": null,
+      "to_column": null,
+      "cardinality": "table"
+    }
+  ]
+}

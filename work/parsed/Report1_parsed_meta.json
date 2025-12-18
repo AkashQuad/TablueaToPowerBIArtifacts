@@ -1,0 +1,534 @@
+{
+  "reportId": "sampletbl",
+  "report_name": "sampletbl",
+  "generatedAt": "2025-12-17T05:12:30.711664Z",
+  "datasources": [
+    {
+      "id": "federated.0c51p3o0uzgyyk1dzk4cw1pk338q",
+      "name": "Sheet1 (updated_candidate_data_2024)",
+      "connection_type": "federated",
+      "connection": {
+        "class": "federated",
+        "named-connections": "",
+        "relation": "",
+        "metadata-records": ""
+      },
+      "query": null
+    }
+  ],
+  "tables": [
+    {
+      "name": "federated.0c51p3o0uzgyyk1dzk4cw1pk338q",
+      "columns": [
+        {
+          "name": "Candidate ID",
+          "type": "integer"
+        },
+        {
+          "name": "Candidate Name",
+          "type": "string"
+        },
+        {
+          "name": "Date of Application",
+          "type": "date"
+        },
+        {
+          "name": "Stage of Hiring Process",
+          "type": "string"
+        },
+        {
+          "name": "Date of Interview",
+          "type": "date"
+        },
+        {
+          "name": "Interview Mode",
+          "type": "string"
+        },
+        {
+          "name": "Interview Duration (min)",
+          "type": "integer"
+        },
+        {
+          "name": "Round",
+          "type": "integer"
+        },
+        {
+          "name": "Interviewer Name",
+          "type": "string"
+        },
+        {
+          "name": "Date of Joining",
+          "type": "date"
+        },
+        {
+          "name": "Total Experience (Years)",
+          "type": "integer"
+        },
+        {
+          "name": "Expected Years of Experience",
+          "type": "integer"
+        },
+        {
+          "name": "CTC Offered",
+          "type": "integer"
+        },
+        {
+          "name": "Expected CTC",
+          "type": "integer"
+        },
+        {
+          "name": "Preferred Location",
+          "type": "string"
+        },
+        {
+          "name": "Work Location",
+          "type": "string"
+        },
+        {
+          "name": "Job Role / Position",
+          "type": "string"
+        },
+        {
+          "name": "Department",
+          "type": "string"
+        },
+        {
+          "name": "Hiring Source",
+          "type": "string"
+        },
+        {
+          "name": "Hiring Type",
+          "type": "string"
+        },
+        {
+          "name": "Client Name",
+          "type": "string"
+        },
+        {
+          "name": "Status",
+          "type": "string"
+        },
+        {
+          "name": "**Expected Closing Date**",
+          "type": "date"
+        },
+        {
+          "name": "Email",
+          "type": "string"
+        },
+        {
+          "name": "Phone Number",
+          "type": "string"
+        },
+        {
+          "name": "Resume Link",
+          "type": "string"
+        },
+        {
+          "name": "**Recruiter ID**",
+          "type": "integer"
+        },
+        {
+          "name": "Reason for Rejection",
+          "type": "string"
+        },
+        {
+          "name": "[**Recruiter ID**]",
+          "type": "integer"
+        },
+        {
+          "name": "[Candidate ID]",
+          "type": "integer"
+        },
+        {
+          "name": "Sheet1",
+          "type": "table"
+        },
+        {
+          "name": "Candidate ID",
+          "type": "integer"
+        },
+        {
+          "name": "Candidate Name",
+          "type": "string"
+        },
+        {
+          "name": "Date of Application",
+          "type": "date"
+        },
+        {
+          "name": "Stage of Hiring Process",
+          "type": "string"
+        },
+        {
+          "name": "Date of Interview",
+          "type": "date"
+        },
+        {
+          "name": "Interview Mode",
+          "type": "string"
+        },
+        {
+          "name": "Interview Duration (min)",
+          "type": "integer"
+        },
+        {
+          "name": "Round",
+          "type": "integer"
+        },
+        {
+          "name": "Interviewer Name",
+          "type": "string"
+        },
+        {
+          "name": "Date of Joining",
+          "type": "date"
+        },
+        {
+          "name": "Total Experience (Years)",
+          "type": "integer"
+        },
+        {
+          "name": "Expected Years of Experience",
+          "type": "integer"
+        },
+        {
+          "name": "CTC Offered",
+          "type": "integer"
+        },
+        {
+          "name": "Expected CTC",
+          "type": "integer"
+        },
+        {
+          "name": "Preferred Location",
+          "type": "string"
+        },
+        {
+          "name": "Work Location",
+          "type": "string"
+        },
+        {
+          "name": "Job Role / Position",
+          "type": "string"
+        },
+        {
+          "name": "Department",
+          "type": "string"
+        },
+        {
+          "name": "Hiring Source",
+          "type": "string"
+        },
+        {
+          "name": "Hiring Type",
+          "type": "string"
+        },
+        {
+          "name": "Client Name",
+          "type": "string"
+        },
+        {
+          "name": "Status",
+          "type": "string"
+        },
+        {
+          "name": "**Expected Closing Date**",
+          "type": "date"
+        },
+        {
+          "name": "Email",
+          "type": "string"
+        },
+        {
+          "name": "Phone Number",
+          "type": "string"
+        },
+        {
+          "name": "Resume Link",
+          "type": "string"
+        },
+        {
+          "name": "**Recruiter ID**",
+          "type": "integer"
+        },
+        {
+          "name": "Reason for Rejection",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "_unnamed",
+      "columns": [
+        {
+          "name": "[Client Name]",
+          "type": "string"
+        },
+        {
+          "name": "[Job Role / Position]",
+          "type": "string"
+        },
+        {
+          "name": "[cnt:Client Name:qk]",
+          "type": "quantitative"
+        },
+        {
+          "name": "[none:Job Role / Position:nk]",
+          "type": "nominal"
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "from_table": null,
+      "from_column": null,
+      "to_table": null,
+      "to_column": null,
+      "cardinality": "table"
+    },
+    {
+      "from_table": null,
+      "from_column": null,
+      "to_table": null,
+      "to_column": null,
+      "cardinality": "table"
+    },
+    {
+      "from_table": null,
+      "from_column": null,
+      "to_table": null,
+      "to_column": null,
+      "cardinality": "table"
+    },
+    {
+      "from_table": null,
+      "from_column": null,
+      "to_table": null,
+      "to_column": null,
+      "cardinality": "table"
+    }
+  ],
+  "worksheets": [
+    {
+      "name": "Sheet 1",
+      "visuals": [
+        {
+          "id": null,
+          "type": "view",
+          "title": null,
+          "fields": []
+        },
+        {
+          "id": null,
+          "type": "view",
+          "title": null,
+          "fields": []
+        },
+        {
+          "id": null,
+          "type": "Automatic",
+          "title": null,
+          "fields": []
+        }
+      ]
+    },
+    {
+      "name": "Sheet 2",
+      "visuals": [
+        {
+          "id": null,
+          "type": "view",
+          "title": null,
+          "fields": [
+            "[Client Name]",
+            "[Job Role / Position]"
+          ]
+        },
+        {
+          "id": null,
+          "type": "view",
+          "title": null,
+          "fields": []
+        },
+        {
+          "id": null,
+          "type": "Automatic",
+          "title": null,
+          "fields": []
+        }
+      ]
+    },
+    {
+      "name": "Sheet 3",
+      "visuals": [
+        {
+          "id": null,
+          "type": "view",
+          "title": null,
+          "fields": []
+        },
+        {
+          "id": null,
+          "type": "view",
+          "title": null,
+          "fields": []
+        },
+        {
+          "id": null,
+          "type": "Automatic",
+          "title": null,
+          "fields": []
+        }
+      ]
+    },
+    {
+      "name": "Sheet 4",
+      "visuals": [
+        {
+          "id": null,
+          "type": "view",
+          "title": null,
+          "fields": []
+        },
+        {
+          "id": null,
+          "type": "view",
+          "title": null,
+          "fields": []
+        },
+        {
+          "id": null,
+          "type": "Automatic",
+          "title": null,
+          "fields": []
+        }
+      ]
+    },
+    {
+      "name": "Sheet 5",
+      "visuals": [
+        {
+          "id": null,
+          "type": "view",
+          "title": null,
+          "fields": []
+        },
+        {
+          "id": null,
+          "type": "view",
+          "title": null,
+          "fields": []
+        },
+        {
+          "id": null,
+          "type": "Automatic",
+          "title": null,
+          "fields": []
+        }
+      ]
+    }
+  ],
+  "dashboards": [
+    {
+      "name": "Dashboard 1",
+      "items": [
+        {
+          "id": null,
+          "ref": "",
+          "type": "zones"
+        },
+        {
+          "id": null,
+          "ref": "",
+          "type": "zones"
+        },
+        {
+          "id": "4",
+          "ref": "",
+          "type": "zone"
+        },
+        {
+          "id": "3",
+          "ref": "",
+          "type": "zone"
+        },
+        {
+          "id": null,
+          "ref": "",
+          "type": "zone-style"
+        }
+      ]
+    },
+    {
+      "name": "Story 1",
+      "items": [
+        {
+          "id": null,
+          "ref": "",
+          "type": "zones"
+        },
+        {
+          "id": "2",
+          "ref": "",
+          "type": "zone"
+        },
+        {
+          "id": "1",
+          "ref": "",
+          "type": "zone"
+        },
+        {
+          "id": "3",
+          "ref": "",
+          "type": "zone"
+        },
+        {
+          "id": "4",
+          "ref": "",
+          "type": "zone"
+        },
+        {
+          "id": "5",
+          "ref": "",
+          "type": "zone"
+        },
+        {
+          "id": null,
+          "ref": "",
+          "type": "zone-style"
+        }
+      ]
+    }
+  ],
+  "measures": [],
+  "connections": [
+    {
+      "class": "federated"
+    },
+    {
+      "class": "excel-direct",
+      "cleaning": "yes",
+      "compat": "no",
+      "dataRefreshTime": "",
+      "filename": "C:/Users/LathasriUddemari(Qua/Downloads/updated_candidate_data_2024.xlsx",
+      "interpretationMode": "1",
+      "server": "",
+      "validate": "no",
+      "workgroup-auth-mode": "as-is"
+    },
+    {
+      "access_mode": "readonly",
+      "author-locale": "en_US",
+      "class": "hyper",
+      "dbname": "Data/TableauTemp/#TableauTemp_107w8p415i2ce61g7113x1vmjkf1.hyper",
+      "default-settings": "hyper",
+      "schema": "Extract",
+      "sslmode": "",
+      "tablename": "Extract",
+      "update-time": "12/16/2025 06:40:27 AM",
+      "username": "tableau_internal_user"
+    }
+  ]
+}

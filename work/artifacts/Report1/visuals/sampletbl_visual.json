@@ -1,0 +1,124 @@
+{
+  "reportId": "sampletbl",
+  "generatedAt": "2025-12-17T05:13:09.586087+00:00",
+  "pages": [
+    {
+      "name": "Sheet 1",
+      "visuals": [
+        {
+          "id": null,
+          "type": "view",
+          "title": null,
+          "fields": []
+        },
+        {
+          "id": null,
+          "type": "view",
+          "title": null,
+          "fields": []
+        },
+        {
+          "id": null,
+          "type": "Automatic",
+          "title": null,
+          "fields": []
+        }
+      ]
+    },
+    {
+      "name": "Sheet 2",
+      "visuals": [
+        {
+          "id": null,
+          "type": "view",
+          "title": null,
+          "fields": [
+            "[Client Name]",
+            "[Job Role / Position]"
+          ]
+        },
+        {
+          "id": null,
+          "type": "view",
+          "title": null,
+          "fields": []
+        },
+        {
+          "id": null,
+          "type": "Automatic",
+          "title": null,
+          "fields": []
+        }
+      ]
+    },
+    {
+      "name": "Sheet 3",
+      "visuals": [
+        {
+          "id": null,
+          "type": "view",
+          "title": null,
+          "fields": []
+        },
+        {
+          "id": null,
+          "type": "view",
+          "title": null,
+          "fields": []
+        },
+        {
+          "id": null,
+          "type": "Automatic",
+          "title": null,
+          "fields": []
+        }
+      ]
+    },
+    {
+      "name": "Sheet 4",
+      "visuals": [
+        {
+          "id": null,
+          "type": "view",
+          "title": null,
+          "fields": []
+        },
+        {
+          "id": null,
+          "type": "view",
+          "title": null,
+          "fields": []
+        },
+        {
+          "id": null,
+          "type": "Automatic",
+          "title": null,
+          "fields": []
+        }
+      ]
+    },
+    {
+      "name": "Sheet 5",
+      "visuals": [
+        {
+          "id": null,
+          "type": "view",
+          "title": null,
+          "fields": []
+        },
+        {
+          "id": null,
+          "type": "view",
+          "title": null,
+          "fields": []
+        },
+        {
+          "id": null,
+          "type": "Automatic",
+          "title": null,
+          "fields": []
+        }
+      ]
+    }
+  ]
+}
