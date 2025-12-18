@@ -48,7 +48,8 @@ six==1.17.0
 smmap==5.0.2
 starlette==0.50.0
 streamlit==1.32.0
-tenacity==9.1.2
+tenacity==8.2.2
+
 threadpoolctl==3.6.0
 toml==0.10.2
 tornado==6.5.2
@@ -62,4 +63,5 @@ fastapi==0.124.4
 uvicorn==0.30.1
 gunicorn==21.2.0
 python-multipart
+
 
