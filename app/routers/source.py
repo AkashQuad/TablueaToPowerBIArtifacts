@@ -2,8 +2,7 @@ from fastapi import APIRouter
 from app.models.requests import SourceConfigRequest
 from app.services.source_store import save_source_config
 
-router = APIRouter(prefix="/source", tags=["Source"])
-
+router = APIRouter()
 
 @router.post("/configure")
 def configure_source(req: SourceConfigRequest):
