@@ -1,6 +1,6 @@
 
 from fastapi import FastAPI
-from app.routers import tableau,artifacts,source
+from app.routers import tableau,artifacts,source,layout,te3
 
 app = FastAPI(
     title="Power BI Migration API",
