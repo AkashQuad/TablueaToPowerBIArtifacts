@@ -12,6 +12,7 @@ def configure_source(req: SourceConfigRequest):
         req.source_config
     )
     return {
-        "status": "saved",
-        "path": str(path)
-    }
+    "status": "saved",
+    "sourceConfigUrl": path   # blob URL or local file
+}
+
