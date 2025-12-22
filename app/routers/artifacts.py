@@ -1,39 +1,47 @@
 from fastapi import APIRouter, HTTPException
-from pathlib import Path
-import json
-
 from app.services.artifact_generator import generate_pbi_artifacts
-from app.config import PARSED_DIR, ARTIFACTS_DIR, SOURCES_DIR
+from app.storage.blob import download_file
+import os
+from pathlib import Path
+import tempfile
 
-router = APIRouter()
 
 @router.post("/generate")
 def generate_artifacts_api(payload: dict):
+
     report_id = payload.get("report_id")
+    parsed_url = payload.get("parsedMetaUrl")
+    source_url = payload.get("sourceConfigUrl")
+
     if not report_id:
-        raise HTTPException(status_code=400, detail="report_id required")
+        raise HTTPException(400, "report_id required")
 
-    parsed_meta_path = PARSED_DIR / f"{report_id}_parsed_meta.json"
-    if not parsed_meta_path.exists():
-        raise HTTPException(status_code=404, detail="Parsed metadata not found")
+    if not parsed_url or not source_url:
+        raise HTTPException(400, "parsedMetaUrl & sourceConfigUrl required")
 
-    source_path = SOURCES_DIR / f"{report_id}_source.json"
-    if not source_path.exists():
-        raise HTTPException(status_code=404, detail="Source config not found")
 
-    with open(source_path, "r", encoding="utf-8") as f:
+    # Download blob files temporarily on Azure tmp
+    tmp_dir = Path(tempfile.mkdtemp())
+
+    parsed_local = tmp_dir / "parsed.json"
+    source_local = tmp_dir / "source.json"
+
+    download_file(parsed_url, parsed_local)
+    download_file(source_url, source_local)
+
+    import json
+    with open(source_local, "r") as f:
         source_data = json.load(f)
 
-    output_dir = ARTIFACTS_DIR / report_id
-
-    generate_pbi_artifacts(
-        parsed_meta_path=str(parsed_meta_path),
-        output_dir=str(output_dir),
+    # generate artifacts => returns list of blob URLs
+    artifact_urls = generate_pbi_artifacts(
+        parsed_meta_path=str(parsed_local),
+        report_id=report_id,
         source_type=source_data["source_type"],
         source_config=source_data["source_config"],
     )
 
     return {
         "status": "generated",
-        "artifacts_dir": str(output_dir)
+        "artifacts": artifact_urls
     }
