@@ -4,24 +4,18 @@ from app.config import UPLOAD_DIR
 
 router = APIRouter()
 
-
 @router.post("/parse")
-async def parse_tableau(
-    file: UploadFile = File(...),
-    report_id: str = "Report1"
-):
-    UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
+async def parse_tableau(file: UploadFile = File(...), report_id: str = "Report1"):
 
-    input_path = UPLOAD_DIR / file.filename
-    with open(input_path, "wb") as f:
+    # Save uploaded Tableau file
+    local_path = UPLOAD_DIR / file.filename
+    with open(local_path, "wb") as f:
         f.write(await file.read())
 
-    parsed_meta_path = parse_tableau_file(
-        input_path=str(input_path),
-        report_id=report_id
-    )
+    # Parse (returns blob URL on Azure)
+    parsed_blob_url = parse_tableau_file(str(local_path), report_id)
 
     return {
         "reportId": report_id,
-        "parsedMetaPath": str(parsed_meta_path)
+        "parsedMetaUrl": parsed_blob_url
     }
