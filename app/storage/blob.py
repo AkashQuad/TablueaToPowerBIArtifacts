@@ -2,48 +2,29 @@ import os
 from azure.storage.blob import BlobServiceClient
 from pathlib import Path
 
-# Load settings from Azure env variables
-ACCOUNT_NAME = os.getenv("AZURE_STORAGE_ACCOUNT")
-ACCOUNT_KEY = os.getenv("AZURE_STORAGE_KEY")
-CONTAINER_NAME = os.getenv("AZURE_BLOB_CONTAINER")
+conn = os.getenv("AZURE_STORAGE_CONNECTION_STRING")
+container = os.getenv("AZURE_STORAGE_CONTAINER")
 
-if not ACCOUNT_NAME or not ACCOUNT_KEY or not CONTAINER_NAME:
-    raise Exception("Azure Blob storage environment variables are missing")
+if not conn or not container:
+    raise Exception("Azure Blob settings missing")
 
-# Construct blob service client
-connection_string = (
-    f"DefaultEndpointsProtocol=https;"
-    f"AccountName={ACCOUNT_NAME};"
-    f"AccountKey={ACCOUNT_KEY};"
-    f"EndpointSuffix=core.windows.net"
-)
-
-blob_client_service = BlobServiceClient.from_connection_string(connection_string)
-container_client = blob_client_service.get_container_client(CONTAINER_NAME)
+service = BlobServiceClient.from_connection_string(conn)
+container_client = service.get_container_client(container)
 
 
 def upload_file(file_path: Path, blob_path: str) -> str:
-    """
-    Upload local file to Blob storage
-    file_path: Path("/tmp/work/parsed/file.json")
-    blob_path: "parsed/file.json"
-    """
     blob = container_client.get_blob_client(blob_path)
 
     with open(file_path, "rb") as data:
         blob.upload_blob(data, overwrite=True)
 
-    return blob.url
+    return f"https://{service.account_name}.blob.core.windows.net/{container}/{blob_path}"
 
 
 def download_file(blob_path: str, local_path: Path):
-    """
-    Download blob to local temp path
-    """
     blob = container_client.get_blob_client(blob_path)
 
     with open(local_path, "wb") as f:
-        stream = blob.download_blob()
-        f.write(stream.readall())
+        f.write(blob.download_blob().readall())
 
     return local_path
