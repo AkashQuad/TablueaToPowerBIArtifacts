@@ -1,24 +1,25 @@
 from pathlib import Path
 import json
+import os
 from app.config import SOURCES_DIR
+from app.storage.local import save_file as save_local
+from app.storage.blob import upload_file as save_blob
 
 
-def save_source_config(report_id: str, source_type: str, source_config: dict) -> Path:
-    """
-    Saves user-selected source configuration for a report.
-    """
+def save_source_config(report_id, source_type, source_config):
 
     SOURCES_DIR.mkdir(parents=True, exist_ok=True)
-
-    payload = {
-        "report_id": report_id,
-        "source_type": source_type,
-        "source_config": source_config
-    }
 
     out_path = SOURCES_DIR / f"{report_id}_source.json"
 
     with open(out_path, "w", encoding="utf-8") as f:
-        json.dump(payload, f, indent=2)
+        json.dump({
+            "report_id": report_id,
+            "source_type": source_type,
+            "source_config": source_config
+        }, f, indent=2)
 
-    return out_path
+    if os.getenv("WEBSITE_SITE_NAME"):
+        return save_blob(out_path, f"sources/{out_path.name}")
+
+    return str(out_path)
