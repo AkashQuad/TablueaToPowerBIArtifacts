@@ -6,6 +6,9 @@ from pathlib import Path
 import tempfile
 
 
+router = APIRouter()
+
+
 @router.post("/generate")
 def generate_artifacts_api(payload: dict):
 
