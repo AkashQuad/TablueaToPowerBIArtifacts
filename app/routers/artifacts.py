@@ -15,8 +15,8 @@ def generate_artifacts_api(payload: dict):
         raise HTTPException(400, "report_id required")
 
     # 🔑 Canonical blob paths (server-owned)
-    parsed_blob = f"artifacts/parsed/{report_id}_parsed_meta.json"
-    source_blob = f"artifacts/sources/{report_id}_source.json"
+    parsed_blob = f"parsed/{report_id}_parsed_meta.json"
+    source_blob = f"sources/{report_id}_source.json"
 
     tmp_dir = Path(tempfile.mkdtemp())
     parsed_local = tmp_dir / "parsed.json"
