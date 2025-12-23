@@ -7,33 +7,32 @@ import json
 
 router = APIRouter()
 
-def blob_path_from_url(url: str) -> str:
-    return url.split(".net/", 1)[1]
-
 @router.post("/generate")
 def generate_artifacts_api(payload: dict):
 
     report_id = payload.get("report_id")
-    parsed_url = payload.get("parsedMetaUrl")
-    source_url = payload.get("sourceConfigUrl")
-
     if not report_id:
         raise HTTPException(400, "report_id required")
 
-    if not parsed_url or not source_url:
-        raise HTTPException(400, "parsedMetaUrl & sourceConfigUrl required")
+    # 🔑 Canonical blob paths (server-owned)
+    parsed_blob = f"artifacts/parsed/{report_id}_parsed_meta.json"
+    source_blob = f"artifacts/sources/{report_id}_source.json"
 
-    # Temp directory (Azure-safe)
     tmp_dir = Path(tempfile.mkdtemp())
-
     parsed_local = tmp_dir / "parsed.json"
     source_local = tmp_dir / "source.json"
 
-    # ✅ FIX: convert URL → blob path
-    download_file(blob_path_from_url(parsed_url), parsed_local)
-    download_file(blob_path_from_url(source_url), source_local)
+    try:
+        download_file(parsed_blob, parsed_local)
+        download_file(source_blob, source_local)
+    except Exception:
+        raise HTTPException(
+            404,
+            "Parsed metadata or source configuration not found. "
+            "Ensure /tableau/parse and /source/configure were executed."
+        )
 
-    with open(source_local, "r", encoding="utf-8") as f:
+    with open(source_local, "r") as f:
         source_data = json.load(f)
 
     artifact_urls = generate_pbi_artifacts(
