@@ -38,7 +38,9 @@ def generate_pbi_artifacts(
         "--source-config", json.dumps(source_config),
     ]
 
-    subprocess.run(cmd, check=True)
+    env = os.environ.copy() 
+    env["REPORT_ID"] = report_id  
+    subprocess.run(cmd, check=True, env=env)
 
     # --------------------------------------------------
     # Upload to Blob Storage (Azure only)
