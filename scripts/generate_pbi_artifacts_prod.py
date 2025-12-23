@@ -149,7 +149,7 @@ def generate_artifacts(
     source_config: Dict[str, Any]
 ) -> Dict[str, Any]:
 
-    report_id = safe_id(parsed_meta.get("reportId") or parsed_meta.get("report_name") or "report")
+    report_id = safe_id(os.environ.get("REPORT_ID", "report"))
     generated_at = datetime.now(timezone.utc).isoformat()
 
     ensure_dir(out_root)
