@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException, Query
+from fastapi import APIRouter, HTTPException, Query, Body
 from pydantic import BaseModel, HttpUrl
 from pathlib import Path
 import httpx
@@ -9,7 +9,6 @@ from app.config import UPLOAD_DIR
 
 router = APIRouter()
 
-
 # -----------------------------
 # Request Schema
 # -----------------------------
@@ -19,26 +18,24 @@ class ParseTableauRequest(BaseModel):
 
 @router.post("/parse")
 async def parse_tableau(
-    payload: ParseTableauRequest,
     report_id: str = Query(
         ...,
         description="Migration job identifier (UUID or logical report id)"
     ),
+    payload: ParseTableauRequest = Body(...),
 ):
     """
     Production-grade Tableau parsing endpoint.
-
-    - Backend pulls file from Azure Blob
-    - Frontend never uploads binaries
-    - Deterministic artifact paths
     """
+
+    print("PARSE CALLED:", report_id, payload.blobUrl)
 
     UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
 
     # -----------------------------
-    # Download Tableau file
+    # Validate file type
     # -----------------------------
-    suffix = Path(payload.blobUrl.path).suffix
+    suffix = Path(payload.blobUrl.path).suffix.lower()
     if suffix not in {".twb", ".twbx"}:
         raise HTTPException(
             status_code=400,
@@ -47,6 +44,9 @@ async def parse_tableau(
 
     local_path = UPLOAD_DIR / f"{uuid.uuid4()}{suffix}"
 
+    # -----------------------------
+    # Download Tableau file
+    # -----------------------------
     try:
         async with httpx.AsyncClient(timeout=120) as client:
             response = await client.get(str(payload.blobUrl))
