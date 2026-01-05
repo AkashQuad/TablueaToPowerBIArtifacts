@@ -1,8 +1,10 @@
 from fastapi import APIRouter, HTTPException, Query, Body
 from pydantic import BaseModel, HttpUrl
 from pathlib import Path
-import httpx
 import uuid
+import os
+
+from azure.storage.blob import BlobClient
 
 from app.services.tableau_parser import parse_tableau_file
 from app.config import UPLOAD_DIR
@@ -26,6 +28,7 @@ async def parse_tableau(
 ):
     """
     Production-grade Tableau parsing endpoint.
+    Backend pulls file from Azure Blob (private container safe).
     """
 
     print("PARSE CALLED:", report_id, payload.blobUrl)
@@ -45,20 +48,22 @@ async def parse_tableau(
     local_path = UPLOAD_DIR / f"{uuid.uuid4()}{suffix}"
 
     # -----------------------------
-    # Download Tableau file
+    # Download Tableau file (Azure SDK)
     # -----------------------------
     try:
-        async with httpx.AsyncClient(timeout=120) as client:
-            response = await client.get(str(payload.blobUrl))
-            response.raise_for_status()
-    except Exception as ex:
-        raise HTTPException(
-            status_code=400,
-            detail=f"Failed to download Tableau file: {str(ex)}"
+        blob_client = BlobClient.from_blob_url(
+            payload.blobUrl,
+            credential=os.getenv("AZURE_STORAGE_CONNECTION_STRING")
         )
 
-    with open(local_path, "wb") as f:
-        f.write(response.content)
+        with open(local_path, "wb") as f:
+            f.write(blob_client.download_blob().readall())
+
+    except Exception as ex:
+        raise HTTPException(
+            status_code=502,
+            detail=f"Blob download failed: {repr(ex)}"
+        )
 
     # -----------------------------
     # Parse & Upload Metadata
