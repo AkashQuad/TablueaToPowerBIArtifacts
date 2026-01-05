@@ -11,9 +11,7 @@ from app.config import UPLOAD_DIR
 
 router = APIRouter()
 
-# -----------------------------
-# Request Schema
-# -----------------------------
+
 class ParseTableauRequest(BaseModel):
     blobUrl: HttpUrl
 
@@ -31,14 +29,13 @@ async def parse_tableau(
     Backend pulls file from Azure Blob (private container safe).
     """
 
-    print("PARSE CALLED:", report_id, payload.blobUrl)
+    blob_url = str(payload.blobUrl)  # ✅ FIX IS HERE
+
+    print("PARSE CALLED:", report_id, blob_url)
 
     UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
 
-    # -----------------------------
-    # Validate file type
-    # -----------------------------
-    suffix = Path(payload.blobUrl.path).suffix.lower()
+    suffix = Path(blob_url).suffix.lower()
     if suffix not in {".twb", ".twbx"}:
         raise HTTPException(
             status_code=400,
@@ -47,12 +44,9 @@ async def parse_tableau(
 
     local_path = UPLOAD_DIR / f"{uuid.uuid4()}{suffix}"
 
-    # -----------------------------
-    # Download Tableau file (Azure SDK)
-    # -----------------------------
     try:
         blob_client = BlobClient.from_blob_url(
-            payload.blobUrl,
+            blob_url=blob_url,
             credential=os.getenv("AZURE_STORAGE_CONNECTION_STRING")
         )
 
@@ -65,9 +59,6 @@ async def parse_tableau(
             detail=f"Blob download failed: {repr(ex)}"
         )
 
-    # -----------------------------
-    # Parse & Upload Metadata
-    # -----------------------------
     try:
         parsed_blob_url = parse_tableau_file(
             local_path=str(local_path),
