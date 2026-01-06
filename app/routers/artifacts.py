@@ -1,48 +1,41 @@
 from fastapi import APIRouter, HTTPException
-from app.services.artifact_generator import generate_pbi_artifacts
-from app.storage.blob import download_file
 from pathlib import Path
-import tempfile
-import json
+
+from app.services.artifact_generator import generate_pbi_artifacts
+from app.config import PARSED_DIR, ARTIFACTS_DIR
 
 router = APIRouter()
 
+
 @router.post("/generate")
 def generate_artifacts_api(payload: dict):
+    """
+    Generate Power BI artifacts from parsed Tableau metadata only.
+    NO source configuration is required or supported.
+    """
 
     report_id = payload.get("report_id")
     if not report_id:
-        raise HTTPException(400, "report_id required")
+        raise HTTPException(status_code=400, detail="report_id required")
 
-    # 🔑 Canonical blob paths (server-owned)
-    parsed_blob = f"parsed/{report_id}_parsed_meta.json"
-    source_blob = f"sources/{report_id}_source.json"
-
-    tmp_dir = Path(tempfile.mkdtemp())
-    parsed_local = tmp_dir / "parsed.json"
-    source_local = tmp_dir / "source.json"
-
-    try:
-        download_file(parsed_blob, parsed_local)
-        download_file(source_blob, source_local)
-    except Exception:
+    parsed_meta_path = PARSED_DIR / f"{report_id}_parsed_meta.json"
+    if not parsed_meta_path.exists():
         raise HTTPException(
-            404,
-            "Parsed metadata or source configuration not found. "
-            "Ensure /tableau/parse and /source/configure were executed."
+            status_code=404,
+            detail="Parsed metadata not found. Run /tableau/parse first."
         )
 
-    with open(source_local, "r") as f:
-        source_data = json.load(f)
+    output_dir = ARTIFACTS_DIR / report_id
+    output_dir.mkdir(parents=True, exist_ok=True)
 
-    artifact_urls = generate_pbi_artifacts(
-        parsed_meta_path=str(parsed_local),
+    artifacts = generate_pbi_artifacts(
+        parsed_meta_path=str(parsed_meta_path),
         report_id=report_id,
-        source_type=source_data["source_type"],
-        source_config=source_data["source_config"],
+        output_dir=str(output_dir),
     )
 
     return {
         "status": "generated",
-        "artifacts": artifact_urls
+        "reportId": report_id,
+        "artifacts": artifacts,
     }
