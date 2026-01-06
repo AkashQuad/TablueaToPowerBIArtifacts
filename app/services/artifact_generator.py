@@ -9,7 +9,7 @@ def generate_pbi_artifacts(
 ):
     """
     Generate Power BI artifacts from parsed Tableau metadata ONLY.
-    No source configuration.
+   
     """
 
     cmd = [
