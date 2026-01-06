@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.routers import tableau, artifacts, source, layout, te3
+from app.routers import tableau, artifacts,  layout, te3
 
 # ------------------------------------------------------------
 # FastAPI app
@@ -29,7 +29,7 @@ app.add_middleware(
 # Register routers
 # ------------------------------------------------------------
 app.include_router(tableau.router,   prefix="/tableau",   tags=["Tableau"])
-app.include_router(source.router,    prefix="/source",    tags=["Source"])
+
 app.include_router(artifacts.router, prefix="/artifacts", tags=["Artifacts"])
 app.include_router(te3.router,       prefix="/te3",       tags=["TE3"])
 app.include_router(layout.router,    prefix="/layout",    tags=["Layout"])
